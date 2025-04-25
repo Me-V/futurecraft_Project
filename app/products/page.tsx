@@ -1,17 +1,19 @@
 // app/products/page.tsx
-import { fetchProducts } from "@/utils/fetchProducts";
-import Image from "next/image";
+import { Suspense } from "react";
+import LoadMore from "../components/LoadMore";
 import Link from "next/link";
+import Image from "next/image";
+import { fetchProducts } from "@/utils/fetchProducts";
 
 export default async function ProductsPage() {
-  const products = await fetchProducts();
+  const initialProducts = await fetchProducts(1);
 
   return (
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-3xl font-bold mb-8">Our Products</h1>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {products.map((product) => (
+        {initialProducts.map((product) => (
           <Link href={`/products/${product.id}`} key={product.id}>
             <div
               key={product.id}
@@ -63,6 +65,10 @@ export default async function ProductsPage() {
             </div>
           </Link>
         ))}
+
+        <Suspense fallback={<p>Loading more...</p>}>
+          <LoadMore />
+        </Suspense>
       </div>
     </div>
   );
