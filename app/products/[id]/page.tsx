@@ -1,4 +1,3 @@
-// app/products/[id]/page.tsx
 import { Product } from '@/types';
 import Image from 'next/image';
 

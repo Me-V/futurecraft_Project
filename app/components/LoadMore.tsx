@@ -1,6 +1,4 @@
-// app/components/LoadMore.tsx
 "use client";
-
 import { useInView } from "react-intersection-observer";
 import { useEffect, useState } from "react";
 import Link from "next/link";
