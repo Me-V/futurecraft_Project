@@ -2,7 +2,7 @@ import { Product } from "@/types";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 
-async function getProduct(id: number): Promise<Product> {
+async function getProduct(id: string): Promise<Product> {
   const res = await fetch(`https://fakestoreapi.com/products/${id}`);
   if (!res.ok) {
     notFound(); // This will show the 404 page
@@ -12,7 +12,7 @@ async function getProduct(id: number): Promise<Product> {
 
 // Use the correct PageProps type from Next.js
 type PageProps = {
-  params: { id: number };
+  params: { id: string };
   searchParams?: { [key: string]: string | string[] | undefined };
 };
 

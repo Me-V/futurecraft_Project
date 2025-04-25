@@ -10,7 +10,7 @@ export default async function ProductsPage({
 }: {
   searchParams: { [key: string]: string | string[] | undefined };
 }) {
-  const initialProducts = await fetchProducts(1);
+  const initialProducts = await fetchProducts();
   const categories = await fetchCategories();
 
   // Get current filter values from URL search params

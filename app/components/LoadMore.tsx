@@ -35,7 +35,7 @@ export default function LoadMore() {
     if (inView && hasMore) {
       loadMoreProducts();
     }
-  }, [inView, hasMore]);
+  }, [inView, hasMore, loadMoreProducts]);
 
   return (
     <>
