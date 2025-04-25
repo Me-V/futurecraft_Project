@@ -1,23 +1,22 @@
-import { Product } from '@/types';
-import Image from 'next/image';
+import { Product } from "@/types";
+import Image from "next/image";
+import { notFound } from "next/navigation";
 
-async function getProduct(id: string): Promise<Product> {  // Changed to string
+async function getProduct(id: string): Promise<Product> {
   const res = await fetch(`https://fakestoreapi.com/products/${id}`);
   if (!res.ok) {
-    throw new Error('Failed to fetch product');
+    notFound(); // This will show the 404 page
   }
   return res.json();
 }
 
-interface PageProps {
-  params: {
-    id: string;
-  };
-}
+// Use the correct PageProps type from Next.js
+type PageProps = {
+  params: { id: string };
+  searchParams?: { [key: string]: string | string[] | undefined };
+};
 
-export default async function ProductDetailPage({
-  params,
-}: PageProps) {  // Added proper type
+export default async function ProductDetailPage({ params }: PageProps) {
   const product = await getProduct(params.id);
 
   return (
@@ -46,7 +45,11 @@ export default async function ProductDetailPage({
                 {[...Array(5)].map((_, i) => (
                   <svg
                     key={i}
-                    className={`w-5 h-5 ${i < Math.round(product.rating.rate) ? 'text-yellow-400' : 'text-gray-300'}`}
+                    className={`w-5 h-5 ${
+                      i < Math.round(product.rating.rate)
+                        ? "text-yellow-400"
+                        : "text-gray-300"
+                    }`}
                     fill="currentColor"
                     viewBox="0 0 20 20"
                   >
