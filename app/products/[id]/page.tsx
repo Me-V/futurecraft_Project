@@ -1,7 +1,7 @@
 import { Product } from '@/types';
 import Image from 'next/image';
 
-async function getProduct(id: number): Promise<Product> {
+async function getProduct(id: string): Promise<Product> {  // Changed to string
   const res = await fetch(`https://fakestoreapi.com/products/${id}`);
   if (!res.ok) {
     throw new Error('Failed to fetch product');
@@ -9,11 +9,15 @@ async function getProduct(id: number): Promise<Product> {
   return res.json();
 }
 
+interface PageProps {
+  params: {
+    id: string;
+  };
+}
+
 export default async function ProductDetailPage({
   params,
-}: {
-  params: { id: number };
-}) {
+}: PageProps) {  // Added proper type
   const product = await getProduct(params.id);
 
   return (
