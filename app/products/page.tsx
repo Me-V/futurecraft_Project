@@ -104,32 +104,42 @@ export default async function ProductsPage({
           </div>
 
           {/* Category Filter */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Categories
-            </label>
-            <form action="/products" method="get">
-              <select
-                name="category"
-                multiple
-                defaultValue={selectedCategory}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 h-[42px] min-h-fit"
-              >
-                <option value="">All Categories</option>
-                {categories.map((category) => (
-                  <option key={category} value={category}>
-                    {category}
-                  </option>
-                ))}
-              </select>
-              <button
-                type="submit"
-                className="mt-2 px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-              >
-                Apply
-              </button>
-            </form>
-          </div>
+          <form action="/products" method="get" className="space-y-2">
+            <div className="flex flex-col space-y-2 max-h-40 overflow-y-auto">
+              {/* All Categories option */}
+              <label className="flex items-center space-x-2">
+                <input
+                  type="radio"
+                  name="category"
+                  value=""
+                  defaultChecked={selectedCategory.length === 0}
+                  className="text-indigo-600 focus:ring-indigo-500"
+                />
+                <span>All Categories</span>
+              </label>
+
+              {/* Dynamic Category options */}
+              {categories.map((category) => (
+                <label key={category} className="flex items-center space-x-2">
+                  <input
+                    type="radio"
+                    name="category"
+                    value={category}
+                    defaultChecked={selectedCategory.includes(category)}
+                    className="text-indigo-600 focus:ring-indigo-500"
+                  />
+                  <span>{category}</span>
+                </label>
+              ))}
+            </div>
+
+            <button
+              type="submit"
+              className="mt-2 px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            >
+              Apply
+            </button>
+          </form>
 
           {/* Rating Filter */}
           <div>
