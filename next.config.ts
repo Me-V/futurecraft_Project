@@ -9,6 +9,18 @@ const nextConfig: NextConfig = {
         // Optionally, you can restrict to specific paths:
         // pathname: '/products/**',
       },
+      {
+        protocol: "https",
+        hostname: "plus.unsplash.com",
+        // Optionally, you can restrict to specific paths:
+        // pathname: '/products/**',
+      },
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+        // Optionally, you can restrict to specific paths:
+        // pathname: '/products/**',
+      },
     ],
   },
   typescript: {
