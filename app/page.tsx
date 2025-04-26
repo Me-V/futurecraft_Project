@@ -183,7 +183,7 @@ export default function HomePage() {
                   {feature.title}
                 </h3>
                 <p className="text-gray-400">
-                  We're committed to providing the best shopping experience for
+                  We&apos;re committed to providing the best shopping experience for
                   our customers.
                 </p>
               </div>
