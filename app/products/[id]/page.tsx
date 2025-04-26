@@ -1,3 +1,5 @@
+export const dynamicParams = true;
+
 import { Product } from "@/types";
 import Image from "next/image";
 import { notFound } from "next/navigation";
