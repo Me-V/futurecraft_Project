@@ -64,7 +64,7 @@ A responsive and functional e-commerce admin dashboard built using **Next.js 15*
    npm run dev
    ```
 
-   Your dashboard will be available at [http://localhost:3000](http://localhost:3000).
+   Your dashboard will be available at [[http://futurecraft-project.vercel.app](https://futurecraft-project.vercel.app/)
 
 4. **Building for production**:
    ```bash
@@ -120,7 +120,7 @@ A responsive and functional e-commerce admin dashboard built using **Next.js 15*
 
 ## Demo
 
-You can view the live demo of this project [here](https://futurecraft-project.vercel.app/).
+You can view the live demo of this project [https://futurecraft-project.vercel.app](https://futurecraft-project.vercel.app/).
 
 ---
 
