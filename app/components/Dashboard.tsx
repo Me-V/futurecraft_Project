@@ -4,7 +4,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { SignedIn, SignedOut, SignInButton } from "@clerk/nextjs";
-import { User } from "@clerk/nextjs/server";
 import {
   LineChart,
   Line,
