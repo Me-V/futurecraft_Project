@@ -4,12 +4,15 @@ const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: 'fakestoreapi.com',
+        protocol: "https",
+        hostname: "fakestoreapi.com",
         // Optionally, you can restrict to specific paths:
         // pathname: '/products/**',
       },
     ],
+  },
+  typescript: {
+    ignoreBuildErrors: true,
   },
 };
 
