@@ -2,8 +2,15 @@ import Image from "next/image";
 import { ShoppingBag, Star, TrendingUp, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { SignedIn, SignedOut, SignInButton } from "@clerk/nextjs";
+import Link from "next/link";
+import { currentUser } from "@clerk/nextjs/server";
 
-export default function HomePage() {
+export default async function HomePage() {
+  const user = await currentUser();
+
+  if (!user) return <div>Not signed in</div>;
+
   return (
     <div className="flex flex-col min-h-screen">
       <section className="w-full py-12 md:py-24 lg:py-32 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950">
@@ -11,6 +18,8 @@ export default function HomePage() {
           <div className="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px]">
             <div className="flex flex-col justify-center space-y-4">
               <div className="space-y-2">
+                <h1 className="text-white text-4xl pb-5">Hi ! { user.fullName }</h1>
+
                 <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none text-white">
                   Welcome to StyleHub
                 </h1>
@@ -19,15 +28,31 @@ export default function HomePage() {
                   premium collection.
                 </p>
               </div>
-              <p className="text-white text- pb-10">Hi! customer@example.com</p>
+
               <div className="flex flex-col gap-2 min-[400px]:flex-row">
-                <Button
-                  size="lg"
-                  className="bg-purple-600 hover:bg-purple-700 text-white"
-                >
-                  Login To Shop Now!
-                  <ShoppingBag className="ml-2 h-4 w-4" />
-                </Button>
+                <SignedOut>
+                  <SignInButton mode="modal">
+                    <Button
+                      size="lg"
+                      variant="outline"
+                      className="border-purple-500 text-purple-500 hover:bg-purple-950 hover:text-white hover:cursor-pointer"
+                    >
+                      Sign In To Shop Now!
+                    </Button>
+                  </SignInButton>
+                </SignedOut>
+
+                <SignedIn>
+                  <Link href="/products">
+                    <Button
+                      size="lg"
+                      variant="outline"
+                      className="border-purple-500 text-purple-500 hover:bg-purple-950 hover:text-white hover:cursor-pointer"
+                    >
+                      Shop Now!
+                    </Button>
+                  </Link>
+                </SignedIn>
                 <Button
                   size="lg"
                   variant="outline"
@@ -183,8 +208,8 @@ export default function HomePage() {
                   {feature.title}
                 </h3>
                 <p className="text-gray-400">
-                  We&apos;re committed to providing the best shopping experience for
-                  our customers.
+                  We&apos;re committed to providing the best shopping experience
+                  for our customers.
                 </p>
               </div>
             ))}

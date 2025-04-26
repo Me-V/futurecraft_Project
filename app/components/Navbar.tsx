@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FiMenu, FiX } from "react-icons/fi";
+import { SignedIn, SignOutButton } from "@clerk/nextjs";
+import { Button } from "@/components/ui/button";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -26,7 +28,6 @@ const Navbar = () => {
   const navLinks = [
     { name: "Home", href: "/" },
     { name: "Products", href: "/products" },
-    { name: "Login", href: "/services" },
   ];
 
   return (
@@ -45,13 +46,25 @@ const Navbar = () => {
               href={link.href}
               className={`${
                 pathname === link.href
-                  ? "text-indigo-600 font-medium"
-                  : "text-gray-600 hover:text-indigo-500"
+                  ? "text-indigo-600 font-medium pt-1"
+                  : "text-gray-600 hover:text-indigo-500 pt-1"
               } transition-colors`}
             >
               {link.name}
             </Link>
           ))}
+
+          <SignedIn>
+            <SignOutButton>
+              <Button
+                size="sm"
+                variant="outline"
+                className="border-purple-500 text-purple-500 hover:bg-purple-950 hover:text-white hover:cursor-pointer"
+              >
+                Log Out
+              </Button>
+            </SignOutButton>
+          </SignedIn>
         </nav>
 
         {/* Mobile Menu Button */}
@@ -91,6 +104,17 @@ const Navbar = () => {
                   </Link>
                 ))}
               </nav>
+              <SignedIn>
+                <SignOutButton>
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="border-purple-500 text-purple-500 hover:bg-purple-950 hover:text-white hover:cursor-pointer ml-5"
+                  >
+                    Log Out
+                  </Button>
+                </SignOutButton>
+              </SignedIn>
             </div>
           </div>
         )}
