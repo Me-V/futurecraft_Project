@@ -9,7 +9,7 @@ import { currentUser } from "@clerk/nextjs/server";
 export default async function HomePage() {
   const user = await currentUser();
 
-  if (!user) return <div>Not signed in</div>;
+  if (!user) console.log("No user detected");
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -18,7 +18,7 @@ export default async function HomePage() {
           <div className="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px]">
             <div className="flex flex-col justify-center space-y-4">
               <div className="space-y-2">
-                <h1 className="text-white text-4xl pb-5">Hi ! { user.fullName }</h1>
+                <h1 className="text-white text-4xl pb-5">Hi ! { user?.fullName }</h1>
 
                 <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none text-white">
                   Welcome to StyleHub
